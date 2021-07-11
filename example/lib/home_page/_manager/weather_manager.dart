@@ -5,9 +5,9 @@ import 'package:functional_listener/functional_listener.dart';
 import 'package:get_it/get_it.dart';
 
 class WeatherManager {
-  Command<String, List<WeatherEntry>> updateWeatherCmd;
-  Command<bool, bool> setExecutionStateCmd;
-  Command<String, String> textChangedCmd;
+  late Command<String, List<WeatherEntry>> updateWeatherCmd;
+  late Command<bool, bool> setExecutionStateCmd;
+  late Command<String, String> textChangedCmd;
 
   WeatherManager() {
     // Command expects a bool value when executed and sets it as its own value

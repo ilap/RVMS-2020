@@ -1,9 +1,9 @@
 class WeatherInCities {
   WeatherInCities({
-    this.cod,
-    this.calctime,
-    this.cnt,
-    this.cities,
+    required this.cod,
+    required this.calctime,
+    required this.cnt,
+    required this.cities,
   });
 
   final int cod;
@@ -31,17 +31,17 @@ class WeatherInCities {
 
 class City {
   City({
-    this.id,
-    this.dt,
-    this.name,
-    this.coord,
-    this.main,
-    this.visibility,
-    this.wind,
+    required this.id,
+    required this.dt,
+    required this.name,
+    required this.coord,
+    required this.main,
+    required this.visibility,
+    required this.wind,
     this.rain,
     this.snow,
-    this.clouds,
-    this.weather,
+    required this.clouds,
+    required this.weather,
   });
 
   final int id;
@@ -62,8 +62,7 @@ class City {
         name: json["name"] as String,
         coord: Coord.fromJson(json["coord"] as Map<String, dynamic>),
         main: MainClass.fromJson(json["main"] as Map<String, dynamic>),
-        visibility:
-            json["visibility"] == null ? null : json["visibility"] as int,
+        visibility: json["visibility"] == 0 ? 0 : json["visibility"] as int,
         wind: Wind.fromJson(json["wind"] as Map<String, dynamic>),
         rain: json["rain"],
         snow: json["snow"],
@@ -89,7 +88,7 @@ class City {
 
 class Clouds {
   Clouds({
-    this.today,
+    required this.today,
   });
 
   final int today;
@@ -105,8 +104,8 @@ class Clouds {
 
 class Coord {
   Coord({
-    this.lon,
-    this.lat,
+    required this.lon,
+    required this.lat,
   });
 
   final double lon;
@@ -125,14 +124,13 @@ class Coord {
 
 class MainClass {
   MainClass({
-    this.temp,
-    this.feelsLike,
-    this.tempMin,
-    this.tempMax,
-    this.pressure,
-    this.humidity,
-    this.seaLevel,
-    this.grndLevel,
+    required this.temp,
+    required this.feelsLike,
+    required this.tempMin,
+    required this.tempMax,
+    required this.pressure,
+    required this.humidity,
+
   });
 
   final double temp;
@@ -141,8 +139,7 @@ class MainClass {
   final double tempMax;
   final int pressure;
   final int humidity;
-  final int seaLevel;
-  final int grndLevel;
+
 
   factory MainClass.fromJson(Map<String, dynamic> json) => MainClass(
         temp: (json["temp"] as num).toDouble(),
@@ -151,9 +148,6 @@ class MainClass {
         tempMax: (json["temp_max"] as num).toDouble(),
         pressure: json["pressure"] as int,
         humidity: json["humidity"] as int,
-        seaLevel: json["sea_level"] == null ? null : json["sea_level"] as int,
-        grndLevel:
-            json["grnd_level"] == null ? null : json["grnd_level"] as int,
       );
 
   Map<String, dynamic> toJson() => {
@@ -163,17 +157,15 @@ class MainClass {
         "temp_max": tempMax,
         "pressure": pressure,
         "humidity": humidity,
-        "sea_level": seaLevel == null ? null : seaLevel,
-        "grnd_level": grndLevel == null ? null : grndLevel,
       };
 }
 
 class Weather {
   Weather({
-    this.id,
-    this.main,
-    this.description,
-    this.icon,
+    required this.id,
+    required this.main,
+    required this.description,
+    required this.icon,
   });
 
   final int id;
@@ -198,8 +190,8 @@ class Weather {
 
 class Wind {
   Wind({
-    this.speed,
-    this.deg,
+    required this.speed,
+    required this.deg,
   });
 
   final num speed;

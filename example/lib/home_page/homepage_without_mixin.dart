@@ -10,8 +10,9 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+typedef PressHandler = void Function()?;
 class _HomePageState extends State<HomePage> {
-  ListenableSubscription errorSubscription;
+  late ListenableSubscription errorSubscription;
 
   @override
   void didChangeDependencies() {
@@ -94,9 +95,12 @@ class _HomePageState extends State<HomePage> {
                         GetIt.I<WeatherManager>().updateWeatherCmd.canExecute,
                     builder: (BuildContext context, bool canExecute, _) {
                       // Depending on the value of canEcecute we set or clear the Handler
-                      final handler = canExecute
-                          ? GetIt.I<WeatherManager>().updateWeatherCmd
-                          : null;
+                      late  PressHandler handler;
+                      if (canExecute) {
+                          handler = GetIt.I<WeatherManager>().updateWeatherCmd;
+                      } else {
+                          handler = () {};
+                      }
                       return RaisedButton(
                         child: Text("Update"),
                         color: Color.fromARGB(255, 33, 150, 243),

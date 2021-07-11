@@ -8,10 +8,10 @@ import 'package:http/http.dart' as http;
 class WeatherService {
   // Async function that queries the REST API and converts the result into the form our ListViewBuilder can consume
   Future<List<WeatherEntry>> update(String filtertext) async {
-    const url =
-        "https://api.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10&appid=27ac337102cc4931c24ba0b50aca6bbd";
+    final url = Uri.parse(
+        'https://api.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10&appid=2d63b2841a38d93492108b3a193b3039');
 
-    final result = await http.get(url).timeout(const Duration(seconds: 5));
+    final result = await http.get(url).timeout(const Duration(seconds: 15));
     if (result.statusCode == HttpStatus.ok) {
       // convert JSON result into a List of WeatherEntries
       return WeatherInCities.fromJson(
